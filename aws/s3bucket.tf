@@ -3,7 +3,7 @@ provider "aws" {
 #  profile                 = var.aws_profile
   access_key             = var.access_key
   secret_key             = var.secret_key
-  token                  = var.token
+  token                  = var.session_token
 #  shared_credentials_file = var.aws_credentials_file
 
   # Make it faster by skipping something
@@ -15,7 +15,8 @@ provider "aws" {
 }
 
 resource "aws_s3_bucket" "b" {
-  bucket = "temp-provisioned-bucket"
+  bucket = var.bucket_name
+#  content = ""
 
   tags = {
     Name        = "temp_bucket"
@@ -26,4 +27,11 @@ resource "aws_s3_bucket" "b" {
 resource "aws_s3_bucket_acl" "example" {
   bucket = aws_s3_bucket.b.id
   acl    = "private"
+}
+
+resource "aws_s3_bucket_object" "dags" {
+    bucket = "${aws_s3_bucket.b.id}"
+    acl    = "private"
+    key    = "dags/"
+    source = "/dev/null"
 }
