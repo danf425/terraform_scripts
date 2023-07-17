@@ -17,6 +17,10 @@ variable "secret_key" {
   default = "temp"
 }
 
+variable "token" {
+  default = "temp"
+}
+
 #variable "aws_credentials_file" {
 #  default     = "~/.aws/credentials"
 #  description = "aws_credentials_file is the file on your local disk from which we will obtain your AWS API credentials."
