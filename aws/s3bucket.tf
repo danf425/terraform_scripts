@@ -3,6 +3,7 @@ provider "aws" {
 #  profile                 = var.aws_profile
   access_key             = var.access_key
   secret_key             = var.secret_key
+  token                  = var.token
 #  shared_credentials_file = var.aws_credentials_file
 
   # Make it faster by skipping something
